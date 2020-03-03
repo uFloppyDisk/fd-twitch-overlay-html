@@ -95,6 +95,7 @@ img:not(.raw) {
 }
 
 progress {
+    vertical-align: middle;
     width: 86%;
     height: 12px;
 }

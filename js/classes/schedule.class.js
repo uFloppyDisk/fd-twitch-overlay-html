@@ -1,19 +1,31 @@
 class Schedule {
-    static schedule = [];
+    schedule = null;
 
-    static get schedule() {
+    constructor(schedule=[]) {
+        this.schedule = schedule;
+    }
+
+    get schedule() {
         return this.schedule;
     }
 
-    static getNext() {
+    getLength() {
+        return this.schedule.length;
+    }
+
+    getEpisode(index) {
+        return this.schedule[index];
+    }
+
+    getNext() {
         return this.schedule.shift();
     }
 
-    static add(episode) {
+    add(episode) {
         this.schedule.push(episode);
     }
 
-    static del(index) {
-        this.schedule.splice(index, 1);
+    del(index, amount) {
+        this.schedule.splice(index, amount);
     }
 }

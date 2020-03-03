@@ -10,9 +10,11 @@
     <link rel="stylesheet" href="css/pos.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    
     <script type="text/javascript" src="js/classes/episode.class.js"></script>
     <script type="text/javascript" src="js/classes/schedule.class.js"></script>
-    <script type="text/javascript" src="js/display.js"></script>
+    <script type="text/javascript" src="js/classes/channel.class.js"></script>
+    <script type="text/javascript" src="js/update.js"></script>
     <script type="text/javascript" src="js/base.js"></script>
 
     <script>
@@ -32,11 +34,11 @@
 
     <title>Channel Seek Bar</title>
     </head>
-    <body onload="update()">
+    <body onload="init()">
         <div class="container">
             <div class="container anchor" id="channel_name">
                 <div>
-                    <span class="text">Channel Name</span>
+                    <span class="text" id="channelName">Channel Name</span>
                 </div>
             </div>
             <div class="container anchor" id="seekbar">
@@ -48,17 +50,17 @@
                         </div>
                         <div class="float-left" id="channel_number">
                             <span class="valign-helper"></span>
-                            <p class="text">15</p>
+                            <p class="text" id="channelNumber">15</p>
                         </div>
                         <span class="clear"></span>
                     </div>
                     <div class="container" id="episode_info">
                         <div id="episode_current">
-                            <span class="text float-left clear-right" id="currentEpisode">Current Episode</span>
+                            <span class="text" id="currentEpisode">Current Episode</span>
                             <p class="text timetable float-right clear-right" id="currentEpisodeTimes">12:00 AM - 1:00 AM</p>
                         </div>
                         <div id="episode_current_progress">
-                            <progress class="float-left clear-right" id="currentEpisodeProgress" value="66" max="100">Test</progress>
+                            <progress class="clear-right" id="currentEpisodeProgress" value="66" max="100">Test</progress>
                             <p class="text timetable float-right clear-right" id="currentEpisodeProgressTime">1:00 AM</p>
                         </div>
                         <div id="episode_next">

@@ -1,6 +1,15 @@
-const DURATIONS = [30, 45, 60, 90, 120];
+const DURATIONS = [30, 60, 90];
 
-function generateEpisodeTimes (isFirstEpisode=false) {
+const TEMP_CHANNELS = [
+    "ABC", "BBC", "CBC", "Penis Network"
+]
+
+channels = [];
+chosen_channel = -1;
+
+function generateEpisodeTimes(channel, isFirstEpisode=false) {
+    schedule = channel.schedule.schedule;
+
     time_start = 0;
     time_end = 0;
 
@@ -12,7 +21,7 @@ function generateEpisodeTimes (isFirstEpisode=false) {
 
         time_start = now.valueOf();
     } else {
-        time_start = Schedule.schedule[Schedule.schedule.length - 1].getEnd;
+        time_start = schedule[schedule.length - 1].getEnd;
     }
 
     episode_duration = DURATIONS[Math.floor(Math.random() * DURATIONS.length)];
@@ -25,40 +34,85 @@ function generateEpisodeTimes (isFirstEpisode=false) {
     return [time_start, time_end];
 }
 
+function init() {
+    for (const [index, channelname] of TEMP_CHANNELS.entries()) {
+        channel = new Channel(channelname, (index + 1));
+        channel.durations = DURATIONS;
+        channel.schedule = new Schedule();
+
+        channels.push(channel);
+    }
+
+    chosen_channel = Math.floor(Math.random() * channels.length);
+
+    update();
+}
+
 function update() {
     try {
         let now = new Date();
-        updateCurrentTime(now);
-        updateCurrentDate(now);
+        updateClock(now);
 
-        if (Schedule.schedule.length == 0) {
-            for (let index = 0; index < 3; index++) {
-                times = [];
+        for (let channel of channels) {
+            if (channel.schedule.getLength() < 3) {
+                for (let index = 0; index < (3 - channel.schedule.getLength()); index++) {
+                    episode_times = [];
+                    
+                    if (channel.schedule.getLength() == 0) {
+                        episode_times = generateEpisodeTimes(channel, true);
+                    } else {
+                        episode_times = generateEpisodeTimes(channel, false); 
+                    }
 
-                if (index == 0) {
-                    times = generateEpisodeTimes(true);
-                } else {
-                    times = generateEpisodeTimes(false);
+                    let episode = new Episode("Episode", episode_times[0], episode_times[1])
+                    channel.addToSched(episode);
                 }
+            }
 
-                let episode = new Episode("Episode", times[0], times[1]);
-                Schedule.add(episode);
+            if (channel.schedule.getEpisode(0).end < now.getTime()) {
+                channel.delFromSched(0);
+
+                episode_times = generateEpisodeTimes(channel, false);
+
+                let episode = new Episode("Episode", episode_times[0], episode_times[1]);
+                channel.addToSched(episode);
             }
         }
 
-        if (Schedule.schedule[0].end < now.getTime()) {
-            Schedule.del(0);
+        updateChannel(channels[chosen_channel]);
+        updateEpisodes(channels[chosen_channel]);
+        updateProgressBar(channels[chosen_channel], now);
+
+        //#region Old
+        // if (Schedule.schedule.getLength == 0) {
+        //     for (let index = 0; index < 3; index++) {
+        //         times = [];
+
+        //         if (index == 0) {
+        //             times = generateEpisodeTimes(true);
+        //         } else {
+        //             times = generateEpisodeTimes(false);
+        //         }
+
+        //         let episode = new Episode("Episode", times[0], times[1]);
+        //         Schedule.add(episode);
+        //     }
+        // }
+
+        // if (Schedule.schedule[0].end < now.getTime()) {
+        //     Schedule.del(0);
             
-            times = generateEpisodeTimes(false);
+        //     times = generateEpisodeTimes(false);
 
-            let episode = new Episode("Episode", times[0], times[1]);
-            Schedule.add(episode);
-        }
+        //     let episode = new Episode("Episode", times[0], times[1]);
+        //     Schedule.add(episode);
+        // }
 
-        updateEpisodes();
-        updateProgressBar(now);
+        // updateEpisodes();
+        // updateProgressBar(now);
+        //#endregion
 
     } catch(exc) {
-        alert(exc);
+        alert(exc.stack);
     }
 }

@@ -1,9 +1,8 @@
 class Episode {
-    name = "Test";
+    name = "";
 
     start = -1;
     end = -1;
-
     startTime = null;
     endTime = null;
 
@@ -22,6 +21,8 @@ class Episode {
 
         this.duration = this.end - this.start;
     }
+
+    //#region Getters 
 
     get getName() {
         return this.name;
@@ -47,6 +48,10 @@ class Episode {
         return this.duration;
     }
 
+    //#endregion
+
+    //#region Setters
+
     set setName(name) {
         this.name = name;
     }
@@ -70,6 +75,8 @@ class Episode {
     set setDuration(duration) {
         this.duration = duration;
     }
+
+    //#endregion
 
     toString() {
         let options = {hour: "numeric", minute: "2-digit"};
