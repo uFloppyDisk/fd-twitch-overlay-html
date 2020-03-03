@@ -1,0 +1,169 @@
+body {
+    background-color: #444444 !important;
+    margin: 0px auto;
+    overflow: hidden;
+}
+
+div#channel {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 1871px;
+    height: 99px;   
+}
+
+div#channel div#inner {
+    position: absolute;
+    top: 5px;
+    left: 62px;
+    width: 1802px;
+    height: 99px;
+}
+
+div#card {
+    position: absolute;
+    top: 99px;
+    left: 0px;
+    width: 1871px;
+    height: 181px;
+}
+
+div#card div#inner {
+    position: absolute;
+    top: 0px;
+    left: 69px;
+    width: 1733px;
+    height: 181px;
+}
+
+div#card div#channellogo {
+    text-align: center;
+    width: 135px;
+    height: 181px;
+}
+
+div#card div#channelnumber {
+    position: absolute;
+    top: 46px;
+    left: 154px;
+}
+
+div#info {
+    position: absolute;
+    top: 20px;
+    left: 433px;
+    width: 1075px;
+    height: 181px;
+}
+
+div#timeslots {
+    position: absolute;
+    top: 11px;
+    left: 0px;
+}
+
+div#clock {
+    position: absolute;
+    top: 21px;
+    right: 0px;
+}
+
+div#info span.text {
+    display: inline;
+}
+
+progress {
+    color: red;
+
+    width: 85%;
+    height: 12px;
+}
+
+p {
+    color: white;
+    font-family: "Bahnschrift";
+
+    line-height: 1;
+    margin-bottom: 5px !important;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+span.text {
+    color: white;
+    font-family: "Bahnschrift";
+
+    line-height: 1;
+    margin-bottom: 5px !important;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+.helper {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle; 
+}
+
+img:not(.base) {
+    vertical-align: middle;
+    max-width: 90%;
+    max-height: auto;
+}
+
+div#channelnumber p {
+    font-size: 65pt;
+}
+
+div#info p {
+    font-size: 29pt;
+}
+
+div#info span {
+    font-size: 29pt;
+}
+
+p#channel {
+    text-align: left;
+
+    font-size: 70pt;
+}
+
+p.datetime {
+    text-align: right;
+    margin-block-end: 0;
+}
+
+p#currentTime {
+    font-size: 32pt;
+}
+
+p#currentDate {
+    font-size: 20pt;
+}
+
+div.info {
+    display: inline;
+    vertical-align: middle;
+}
+
+span.text#title {
+    float: left;
+    overflow: auto;
+}
+
+span.text#time {
+    top: 50%;
+    float: right;
+    clear: right;
+}
+
+div.info#nextEpisode span.text#title {
+    margin-top: 6px;
+
+    font-size: 20pt;
+}
+
+div.info span.text#time {
+    font-size: 20pt;
+}

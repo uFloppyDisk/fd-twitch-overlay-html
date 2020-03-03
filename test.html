@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=1871, height=280, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/old.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    
+    <script type="text/javascript" src="js/base.js"></script>
+    <script>
+        function reload() {
+            location.href = location
+        }
+
+        const qString = location.search;
+        const parameters = new URLSearchParams(qString);
+
+        if (parameters.get("action") == "reload") {
+            setInterval('reload()',1000);
+        } else if (parameters.get("action") == "update") {
+            setInterval('update()', 1000)
+        }
+    </script>
+
+    <title>Hello, world!</title>
+  </head>
+  <body onload="update()">
+    <div id="channel">
+        <div id="inner">
+            <p id="channel">Channel Name</p>
+        </div>
+    </div>
+    <div id="card">
+        <img class="base" src="res/1x/plate.png">
+        <div id="inner">
+            <div id="channellogo">
+                <span class="helper"></span>
+                <img src="res/1x/old_logo.png">
+            </div>
+            <div id="channelnumber">
+                <p>9</p>
+            </div>
+            <div id="info">
+                <div class="info" id="currentEpisode">
+                    <span class="text" id="title">Current Episode</span>
+                    <span class="text nolineheight" id="time">12:00 AM - 1:00 AM</span>
+                </div>
+                <div class="info" id="progress">
+                    <progress value="50" max="100"></progress>
+                    <span class="text nolineheight" id="time">1:00 AM</span>
+                </div>
+                <div class="info" id="nextEpisode">
+                    <span class="text" id="title">Next Episode</span>
+                    <span class="text nolineheight" id="time">1:00 AM - 1:30 AM</span>
+                </div>
+            </div>
+			<div id="clock">
+				<p class="datetime" id="currentTime">12:00 PM</p>
+				<p class="datetime" id="currentDate">01/01/1970</p>
+			</div>
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+</html>

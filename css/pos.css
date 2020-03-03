@@ -1,0 +1,124 @@
+div#channel_name {
+    line-height: 1;
+    height: 99px;
+    padding-top: 5px;
+    padding-left: 62px;
+}
+
+div#channel_name span.text {
+    font-size: 70pt;
+}
+
+div#seekbar {
+    top: 99px;
+    width: 1871px;
+    height: 181px;
+}
+
+div#seekbar_inner {
+    top: 0px;
+    left: 69px;
+}
+
+div#channel_info {
+    left: 0px;
+    width: 433px;
+    height: 100%;
+}
+
+div#channel_logo {
+    top: 0px;
+    left: 0px;
+    width: 135px;
+    height: 100%;
+}
+
+div#channel_number {
+    top: 0px;
+    left: 135px;
+    width: 135px;
+    height: 100%;
+}
+
+div#channel_number p.text {
+    font-size: 65pt;
+    padding-left: 20px;
+    text-align: left;
+}
+
+div#episode_info {
+    left: 433px;
+    width: 1075px;
+    height: 100%;
+    padding-top: 3px;
+}
+
+div#episode_current {
+    width: 100%;
+    height: 30%;
+}
+
+div#episode_current span.text:first-of-type {
+    font-size: 29pt;
+}
+
+div#episode_current p.text {
+    line-height: 54px;
+}
+
+div#episode_current_progress {
+    width: 100%;
+    height: 15%;
+}
+
+div#episode_current_progress p.text {
+    line-height: 27px;
+}
+
+div#episode_next {
+    width: 100%;
+    height: 25%;
+}
+
+div#episode_next span.text:first-of-type {
+    font-size: 20pt;
+}
+
+div#episode_next p.text {
+    line-height: 45px;
+}
+
+div#episode_info p.text {
+    padding-left: 20px;
+    text-align: right;
+}
+
+div#episode_info p.timetable {
+    font-size: 20pt;
+    top: 50%;
+    margin: 0px;
+    padding: 0px;
+}
+
+div#datetime {
+    left: 1508px;
+    width: 225px;
+    height: 100%;
+}
+
+div#datetime p.time {
+    line-height: 1;
+    font-size: 20pt;
+    top: 50%;
+    margin: 0px;
+    padding: 0px;
+}
+
+div#datetime p.time:first-of-type {
+    font-size: 32pt;
+    padding-top: 21px; 
+}
+
+div#datetime p.time:last-of-type {
+    font-size: 20pt;
+}

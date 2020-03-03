@@ -1,0 +1,7 @@
+# Resources folder
+
+/res/*
+!/res/
+!/res/1x/
+/res/1x/*
+!/res/1x/plate.png
