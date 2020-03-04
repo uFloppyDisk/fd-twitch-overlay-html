@@ -98,4 +98,6 @@ progress {
     vertical-align: middle;
     width: 86%;
     height: 12px;
+
+    background-color: rgba(25, 25, 25, 25);
 }

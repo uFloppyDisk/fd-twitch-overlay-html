@@ -122,3 +122,11 @@ div#datetime p.time:first-of-type {
 div#datetime p.time:last-of-type {
     font-size: 20pt;
 }
+
+progress::-webkit-progress-bar {
+    background-color: #AAAAAA;
+}
+
+progress::-webkit-progress-value {
+    background-color: #4099ff;
+}

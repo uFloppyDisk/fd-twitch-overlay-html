@@ -1,7 +1,7 @@
 const DURATIONS = [30, 60, 90];
 
 const TEMP_CHANNELS = [
-    "ABC", "BBC", "CBC", "Penis Network"
+    "ABC", "BBC", "CBC"
 ]
 
 channels = [];
@@ -82,35 +82,6 @@ function update() {
         updateChannel(channels[chosen_channel]);
         updateEpisodes(channels[chosen_channel]);
         updateProgressBar(channels[chosen_channel], now);
-
-        //#region Old
-        // if (Schedule.schedule.getLength == 0) {
-        //     for (let index = 0; index < 3; index++) {
-        //         times = [];
-
-        //         if (index == 0) {
-        //             times = generateEpisodeTimes(true);
-        //         } else {
-        //             times = generateEpisodeTimes(false);
-        //         }
-
-        //         let episode = new Episode("Episode", times[0], times[1]);
-        //         Schedule.add(episode);
-        //     }
-        // }
-
-        // if (Schedule.schedule[0].end < now.getTime()) {
-        //     Schedule.del(0);
-            
-        //     times = generateEpisodeTimes(false);
-
-        //     let episode = new Episode("Episode", times[0], times[1]);
-        //     Schedule.add(episode);
-        // }
-
-        // updateEpisodes();
-        // updateProgressBar(now);
-        //#endregion
 
     } catch(exc) {
         alert(exc.stack);
