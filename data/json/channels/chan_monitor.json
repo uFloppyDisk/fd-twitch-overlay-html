@@ -1,0 +1,15 @@
+{
+    "name": "The Monitor Network",
+    "number": 68,
+
+    "episode" : {
+        "titles": [
+            "It's The Monitor, Yes?",
+            "Monitor Capture 2: Resurrection",
+            "Monitor Capture: Nemesis",
+            "The Screen Looker",
+            "Teamviewer.exe"
+        ],
+        "durations": [30, 60, 90, 120, 180]
+    }
+}

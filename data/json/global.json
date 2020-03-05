@@ -1,0 +1,26 @@
+{
+    "channel_files": [
+        "data/json/channels/chan_gaming.json",
+        "data/json/channels/chan_monitor.json",
+        "data/json/channels/chan_vr.json"
+    ],
+    "episode": {
+        "titles": [
+            "Uninterested George",
+            "Defense on Midget",
+            "Multiple Slap Woman",
+            "Canada's Least Wanted",
+            "Dependance Day",
+            "Pimp My Guide",
+            "NCIS: LazyTown",
+            "Puerto Rico Five-0",
+            "The Bitchelor",
+            "59.99 Minutes",
+            "Medieval Family",
+            "Where's Fucko?",
+            "B.U.D.D.I.E.S",
+            "G.I. Woah"
+        ],
+        "duration": [30, 60, 90, 120, 180]
+    }
+}

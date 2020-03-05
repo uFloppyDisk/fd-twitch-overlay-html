@@ -3,6 +3,7 @@ class Channel {
     name = "";
     number = -1;
 
+    titles = [];
     durations = [];
 
     schedule = null;
@@ -20,6 +21,10 @@ class Channel {
 
     get number() {
         return this.number;
+    }
+
+    get titles() {
+        return this.titles;
     }
 
     get durations() {
@@ -46,6 +51,13 @@ class Channel {
      */
     set number(number) {
         this.number = number;
+    }
+
+    /**
+     * @param {Array} titles
+     */
+    set titles(titles) {
+        this.titles = titles;
     }
 
     /**

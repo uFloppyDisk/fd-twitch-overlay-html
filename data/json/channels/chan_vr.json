@@ -1,0 +1,16 @@
+{
+    "name": "Real Virtuality",
+    "number": 421,
+
+    "episode" : {
+        "titles": [
+            "VR Rangers",
+            "The Standing",
+            "Inside The Game: Inside There [In There]",
+            "Inception",
+            "Inception: The Receptionist's Desk",
+            "Inception: Contraception"
+        ],
+        "durations": [30, 60, 90, 120, 180]
+    }
+}

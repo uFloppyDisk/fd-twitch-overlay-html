@@ -1,3 +1,9 @@
+<?php
+
+require_once("inc/classes/FileService.class.js");
+
+?>
+
 <!doctype html>
 <html lang="en">
     <head>
@@ -30,6 +36,13 @@
         } else if (parameters.get("action") == "update") {
             setInterval('update()', 1000)
         }
+    </script>
+
+    <script>
+        let json_global_temp = <?php echo FileService::read("data/json/global.json");?>;
+        const JSON_GLOBAL = JSON.parse(json_global_temp);
+        
+        let json_channels = [];
     </script>
 
     <title>Channel Seek Bar</title>
