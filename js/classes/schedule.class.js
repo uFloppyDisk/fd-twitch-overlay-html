@@ -9,6 +9,10 @@ class Schedule {
         return this.schedule;
     }
 
+    set schedule(schedule) {
+        this.schedule = schedule;
+    }
+
     getLength() {
         return this.schedule.length;
     }

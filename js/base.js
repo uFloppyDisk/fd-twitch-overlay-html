@@ -4,8 +4,8 @@ const TEMP_CHANNELS = [
     "ABC", "BBC", "CBC"
 ]
 
-channels = [];
-chosen_channel = -1;
+let channels = {};
+chosen_channel = null;
 
 function generateEpisodeTimes(channel, isFirstEpisode=false) {
     schedule = channel.schedule.schedule;
@@ -24,7 +24,7 @@ function generateEpisodeTimes(channel, isFirstEpisode=false) {
         time_start = schedule[schedule.length - 1].getEnd;
     }
 
-    episode_duration = DURATIONS[Math.floor(Math.random() * DURATIONS.length)];
+    episode_duration = channel.durations[Math.floor(Math.random() * channel.durations.length)];
 
     duration_hours = Math.floor(episode_duration / 60);
     duration_minutes = episode_duration % 60;
@@ -35,15 +35,34 @@ function generateEpisodeTimes(channel, isFirstEpisode=false) {
 }
 
 function init() {
-    for (const [index, channelname] of TEMP_CHANNELS.entries()) {
-        channel = new Channel(channelname, (index + 1));
-        channel.durations = DURATIONS;
-        channel.schedule = new Schedule();
+    // for (const [index, channelname] of TEMP_CHANNELS.entries()) {
+    //     channel = new Channel(channelname, (index + 1));
+    //     channel.durations = DURATIONS;
+    //     channel.schedule = new Schedule();
 
-        channels.push(channel);
+    //     channels.push(channel);
+    // }
+
+    // chosen_channel = Math.floor(Math.random() * channels.length);
+
+    console.log(ARGS.get("scene"));
+    if (ARGS.get("scene") != null) {
+        chosen_channel = ARGS.get("scene");
+    } else {
+        chosen_channel = "scene_monitor";
     }
 
-    chosen_channel = Math.floor(Math.random() * channels.length);
+
+    for (json of JSON_GLOBAL.channels) {
+        channel = new Channel(json.name, json.number);
+        channel.titles = json.episode.titles;
+        channel.durations = json.episode.durations;
+        channel.schedule = new Schedule();
+
+        channels[json.scene] = channel;
+    }
+
+    console.log(Object.entries(channels));
 
     update();
 }
@@ -53,7 +72,8 @@ function update() {
         let now = new Date();
         updateClock(now);
 
-        for (let channel of channels) {
+        for (let [name, channel] of Object.entries(channels)) {
+            console.log(name + ", " + channel)
             if (channel.schedule.getLength() < 3) {
                 for (let index = 0; index < (3 - channel.schedule.getLength()); index++) {
                     episode_times = [];
@@ -64,7 +84,16 @@ function update() {
                         episode_times = generateEpisodeTimes(channel, false); 
                     }
 
-                    let episode = new Episode("Episode", episode_times[0], episode_times[1])
+                    let episode_name = null;
+
+                    let title_switch = Math.floor(Math.random() * 2);
+                    if (title_switch == 0) {
+                        episode_name = JSON_GLOBAL.episode.titles[Math.floor(Math.random() * JSON_GLOBAL.episode.titles.length)];
+                    } else {
+                        episode_name = channel.titles[Math.floor(Math.random() * channel.titles.length)]; 
+                    }
+
+                    let episode = new Episode(episode_name, episode_times[0], episode_times[1])
                     channel.addToSched(episode);
                 }
             }
@@ -74,7 +103,16 @@ function update() {
 
                 episode_times = generateEpisodeTimes(channel, false);
 
-                let episode = new Episode("Episode", episode_times[0], episode_times[1]);
+                let episode_name = null;
+
+                let title_switch = Math.floor(Math.random() * 2);
+                if (title_switch == 0) {
+                    episode_name = JSON_GLOBAL.episode.titles[Math.floor(Math.random() * JSON_GLOBAL.episode.titles.length)];
+                } else {
+                    episode_name = channel.titles[Math.floor(Math.random() * channel.titles.length)]; 
+                }
+
+                let episode = new Episode(episode_name, episode_times[0], episode_times[1]);
                 channel.addToSched(episode);
             }
         }

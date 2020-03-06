@@ -6,29 +6,33 @@
     <meta name="viewport" content="width=1871, height=280, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/base.css">
-    <link rel="stylesheet" href="css/pos.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="./css/base.css">
+    <link rel="stylesheet" type="text/css" href="./css/pos.css">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-    <script type="text/javascript" src="js/inc/require.js"></script>
+    <script type="text/javascript" src="./data/json/channels/json_scene_vr.js"></script>
+    <script type="text/javascript" src="./data/json/channels/json_scene_gaming.js"></script>
+    <script type="text/javascript" src="./data/json/channels/json_scene_monitor.js"></script>
+    <script type="text/javascript" src="./data/json/json_global.js"></script>
 
-    <script type="text/javascript" src="js/classes/episode.class.js"></script>
-    <script type="text/javascript" src="js/classes/schedule.class.js"></script>
-    <script type="text/javascript" src="js/classes/channel.class.js"></script>
-    <script type="text/javascript" src="js/update.js"></script>
-    <script type="text/javascript" src="js/base.js"></script>
+    <script type="text/javascript" src="./js/inc/fileservice.inc.js"></script>
+    <script type="text/javascript" src="./js/classes/episode.class.js"></script>
+    <script type="text/javascript" src="./js/classes/schedule.class.js"></script>
+    <script type="text/javascript" src="./js/classes/channel.class.js"></script>
+    <script type="text/javascript" src="./js/update.js"></script>
+    <script type="text/javascript" src="./js/base.js"></script>
 
     <script>
         function reload() {
             location.href = location
         }
 
-        const qString = location.search;
-        const parameters = new URLSearchParams(qString);
+        const QUERY_STRING = location.search;
+        const ARGS = new URLSearchParams(QUERY_STRING);
 
-        if (parameters.get("action") == "reload") {
+        if (ARGS.get("action") == "reload") {
             setInterval('reload()',1000);
-        } else if (parameters.get("action") == "update") {
+        } else if (ARGS.get("action") == "update") {
             setInterval('update()', 1000)
         }
     </script>
@@ -36,13 +40,13 @@
     <title>Channel Seek Bar</title>
     </head>
     <body onload="init()">
-        <div class="container">
+        <div class="container hideMe">
             <div class="container anchor" id="channel_name">
                 <div>
                     <span class="text" id="channelName">Channel Name</span>
                 </div>
             </div>
-            <div class="container anchor" id="seekbar">
+            <div class="container anchor hideMe" id="seekbar">
                 <img class="raw" alt="ERROR" src="res/1x/plate.png">
                 <div class="container fill" id="seekbar_inner">
                     <div class="container" id="channel_info">
