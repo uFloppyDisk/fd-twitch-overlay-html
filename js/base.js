@@ -35,17 +35,6 @@ function generateEpisodeTimes(channel, isFirstEpisode=false) {
 }
 
 function init() {
-    // for (const [index, channelname] of TEMP_CHANNELS.entries()) {
-    //     channel = new Channel(channelname, (index + 1));
-    //     channel.durations = DURATIONS;
-    //     channel.schedule = new Schedule();
-
-    //     channels.push(channel);
-    // }
-
-    // chosen_channel = Math.floor(Math.random() * channels.length);
-
-    console.log(ARGS.get("scene"));
     if (ARGS.get("scene") != null) {
         chosen_channel = ARGS.get("scene");
     } else {
@@ -61,15 +50,13 @@ function init() {
         } else {
             channel.logo = json.logo;
         }
-        
+
         channel.titles = json.episode.titles;
         channel.durations = json.episode.durations;
         channel.schedule = new Schedule();
 
         channels[json.scene] = channel;
     }
-
-    console.log(Object.entries(channels));
 
     update();
 }
@@ -80,7 +67,6 @@ function update() {
         updateClock(now);
 
         for (let [name, channel] of Object.entries(channels)) {
-            console.log(name + ", " + channel)
             if (channel.schedule.getLength() < 3) {
                 for (let index = 0; index < (3 - channel.schedule.getLength()); index++) {
                     episode_times = [];

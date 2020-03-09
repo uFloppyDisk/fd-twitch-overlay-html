@@ -7,7 +7,6 @@ function updateClock(now) {
 }
 
 function updateChannel(channel) {
-    console.log(channel);
     document.getElementById("channelName").innerText = channel.name;
     document.getElementById("channelNumber").innerText = channel.number;
 
