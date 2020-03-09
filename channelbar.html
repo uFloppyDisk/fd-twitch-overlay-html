@@ -31,7 +31,7 @@
         const ARGS = new URLSearchParams(QUERY_STRING);
 
         if (ARGS.get("action") == "reload") {
-            setInterval('reload()',1000);
+            setInterval('reload()', 1000);
         } else if (ARGS.get("action") == "update") {
             setInterval('update()', 1000)
         }
@@ -51,7 +51,7 @@
                 <div class="container fill" id="seekbar_inner">
                     <div class="container" id="channel_info">
                         <div class="float-left flex" id="channel_logo">
-                            <img alt="LOGO" src="res/1x/old_logo.png">
+                            <img id="channelLogo" alt="LOGO" src="res/1x/old_logo.png">
                         </div>
                         <div class="float-left" id="channel_number">
                             <span class="valign-helper"></span>

@@ -3,7 +3,7 @@ var JSON_SCENE_VR = {
 
     "name": "Real Virtuality",
     "number": 421,
-    "logo": "res/1x/old_logo.png",
+    "logo": "res/1x/scene_vr.png",
 
     "episode" : {
         "titles": [

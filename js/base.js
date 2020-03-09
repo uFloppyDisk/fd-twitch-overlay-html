@@ -55,6 +55,13 @@ function init() {
 
     for (json of JSON_GLOBAL.channels) {
         channel = new Channel(json.name, json.number);
+
+        if (json.logo == null) {
+            channel.logo = JSON_GLOBAL.logo;
+        } else {
+            channel.logo = json.logo;
+        }
+        
         channel.titles = json.episode.titles;
         channel.durations = json.episode.durations;
         channel.schedule = new Schedule();

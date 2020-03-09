@@ -3,7 +3,7 @@ var JSON_SCENE_MONITOR = {
 
     "name": "The Monitor Network",
     "number": 68,
-    "logo": "res/1x/old_logo.png",
+    "logo": "res/1x/scene_monitor.png",
 
     "episode" : {
         "titles": [

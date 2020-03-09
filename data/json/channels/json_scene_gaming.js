@@ -3,7 +3,7 @@ var JSON_SCENE_GAMING = {
     
     "name": "Gamer Zone",
     "number": 419,
-    "logo": "res/1x/old_logo.png",
+    "logo": "res/1x/scene_gaming.png",
 
     "episode" : {
         "titles": [
@@ -11,7 +11,7 @@ var JSON_SCENE_GAMING = {
             "Gaming Gamers: The Game's Gameplay",
             "Super Vergen",
             "Super Vergen 2: Reloaded",
-            "Super Vergen 2: Part 2: Resurrection: The Awakening",
+            "Super Vergen 2 Part 2: Resurrection",
             "Cocky Ballboa",
             "Never Stoppink Play Viedo Gaems",
             "30 Minute-Long Chase Scenes: The Runs"

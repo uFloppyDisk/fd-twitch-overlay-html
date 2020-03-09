@@ -2,6 +2,7 @@ class Channel {
 
     name = "";
     number = -1;
+    logo = null;
 
     titles = [];
     durations = [];
@@ -21,6 +22,10 @@ class Channel {
 
     get number() {
         return this.number;
+    }
+
+    get logo() {
+        return this.logo;
     }
 
     get titles() {
@@ -51,6 +56,13 @@ class Channel {
      */
     set number(number) {
         this.number = number;
+    }
+
+    /**
+     * @param {string} logo
+     */
+    set logo(logo) {
+        this.logo = logo;
     }
 
     /**

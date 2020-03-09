@@ -10,6 +10,10 @@ function updateChannel(channel) {
     console.log(channel);
     document.getElementById("channelName").innerText = channel.name;
     document.getElementById("channelNumber").innerText = channel.number;
+
+    if (channel.logo != null) {    
+        document.getElementById("channelLogo").setAttribute("src", channel.logo)
+    }
 }
 
 function updateEpisodes(channel) {
