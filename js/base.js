@@ -1,9 +1,3 @@
-const DURATIONS = [30, 60, 90];
-
-const TEMP_CHANNELS = [
-    "ABC", "BBC", "CBC"
-]
-
 let channels = {};
 chosen_channel = null;
 
@@ -35,12 +29,16 @@ function generateEpisodeTimes(channel, isFirstEpisode=false) {
 }
 
 function init() {
+    if (ARGS.get("animate") != null) {
+        let attrs = document.getElementById("hide").getAttribute("class");
+        document.getElementById("hide").setAttribute("class", attrs + " animate")
+    }
+
     if (ARGS.get("scene") != null) {
         chosen_channel = ARGS.get("scene");
     } else {
         chosen_channel = "scene_monitor";
     }
-
 
     for (json of JSON_GLOBAL.channels) {
         channel = new Channel(json.name, json.number);
