@@ -1,10 +1,10 @@
 # Only keep
 
-/res/*
-!/res/
-!/res/1x/
-/res/1x/*
-!/res/1x/plate.png
-!/res/1x/scene_monitor.png
-!/res/1x/scene_gaming.png
-!/res/1x/scene_vr.png
+*/res/*
+!*/res/
+!*/res/1x/
+*/res/1x/*
+!*/res/1x/plate.png
+!*/res/1x/scene_monitor.png
+!*/res/1x/scene_gaming.png
+!*/res/1x/scene_vr.png
