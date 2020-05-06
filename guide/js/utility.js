@@ -95,7 +95,7 @@ function addEpisode(value, channel, animate=false, width_override=0) {
     if (animate) {
         html_classes = html_classes.replace(" ep-", " ");
         html_classes += " anim-start";
-    } 
+    }
 
     let objDiv = $("<div>", {"class": html_classes});
     objDiv.html(value);

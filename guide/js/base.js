@@ -62,6 +62,7 @@ function update() {
         if ((!(value === null)) && value.length > 0) {
             if (!(old_entries[index] === value)) {
                 addEpisode(value, index, true);
+
                 old_entries[index] = value;
 
                 entries = storage.getEntry("entries", true);
