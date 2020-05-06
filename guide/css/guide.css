@@ -1,0 +1,138 @@
+body {
+    background-color: black;
+}
+
+div {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.va-bottom {
+    position: relative;
+    top: 10px;
+}
+
+.va-top {
+    position: relative;
+    top: -10px;
+}
+
+.va-header {
+    position: relative;
+    top: -4px;
+}
+
+div.header-gradient {
+    z-index: -1;
+
+    background-image: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(0,0,0,0) 50%);
+}
+
+div.header-bg {
+    z-index: -2;
+
+    background-color: #0000FF;
+}
+
+div.channel_info {
+    background-color: #0000BF;
+
+    width: 129.99px;
+}
+
+div.channel_info > div {
+    font-weight: 100;
+    font-size: 40px;
+}
+
+div.channel_info > div:first-child {
+    font-weight: bolder;
+    font-size: 44px;
+}
+
+div.channel_logo {
+    width: 270.01px;
+
+    background-color: #0000FF;
+
+    border-left-style: solid;
+    border-left-width: 6.66px;
+    border-left-color: black;
+
+    border-right-style: solid;
+    border-right-width: 2.66px;
+    border-right-color: white;
+}
+
+div.episode {
+    font-size: 30pt;
+
+    font-family: acumin-pro, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    
+    text-shadow: 3px 3px 5px #000;
+}
+
+div.episodes {
+    width: 2157.32px;
+    height: 133.333px;
+
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.75);
+
+    border-bottom-style: solid;
+    border-bottom-width: 2.666px;
+    border-bottom-color: white;
+}
+
+div.episodes-gradient {
+    z-index: -1;
+
+    background-image: linear-gradient(to right, rgba(0,0,0,0.2), rgba(0,0,0,0) 15%, rgba(0,0,0,0) 85%, rgba(0,0,0,0.2));
+}
+
+div.episodes-bg {
+    z-index: -2;
+
+    background-color: #0000CC;
+}
+
+div.default {
+    color: rgba(255,255,255,0.75);
+
+    font-family: acumin-pro, sans-serif;
+    font-style: normal;
+    font-weight: 200;
+
+    font-size: 30pt;
+}
+
+.ep-width-1 {
+    width: 400px;
+    opacity: 100;
+    padding-left: 35px;
+}
+
+.ep-width-2 {
+    width: 800px;
+    opacity: 100;
+    padding-left: 35px;
+}
+
+.ep-width-3 {
+    width: 1200px;
+    opacity: 100;
+    padding-left: 35px;
+}
+
+.anim-start {
+    width: 1px;
+    opacity: 0;
+    padding-left: 0.0001px;
+}
+
+.anim {
+    -webkit-transition: width 1s ease-out, opacity 500ms linear, padding-left 200ms ease;
+    transition: width 1s ease-out, opacity 500ms linear, padding-left 200ms ease;
+}

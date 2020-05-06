@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=1871, height=280, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+        <link rel="stylesheet" type="text/css" href="./css/grid.css">
+        <link rel="stylesheet" type="text/css" href="./css/flex.css">
+        <link rel="stylesheet" type="text/css" href="./css/guide.css">
+        <link rel="stylesheet" type="text/css" href="./css/base.css">
+
+        <script type="text/javascript" src="./js//classes/storage.class.js"></script>
+        <script type="text/javascript" src="./js/utility.js"></script>
+        <script type="text/javascript" src="./js/base.js"></script>
+
+        <script>
+            function reload() {
+                location.href = location
+            }
+
+            const QUERY_STRING = location.search;
+            const ARGS = new URLSearchParams(QUERY_STRING);
+
+            if (ARGS.get("clear") === "true") {
+                localStorage.removeItem("entries");
+                localStorage.removeItem("new_entries");
+            }
+
+            if (ARGS.get("action") == "reload") {
+                setInterval('reload()', 1000);
+            } else if (ARGS.get("action") == "update") {
+                setInterval('update()', 2000);
+                setInterval('animate()', 500);
+            }
+        </script>
+
+        <title>Guide</title>
+    </head>
+    <body onload="init()">
+        <div class="grid-container-guide">
+            <div class="grid-item-header">
+                <div class="flex-container-header">
+                    <div>
+                        <span class="va-header">TODAY</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid-item-header header-gradient"></div>
+            <div class="grid-item-header header-bg"></div>
+
+            <div class="grid-item-channels">
+                <div class="flex-container-channels">
+                    <div class="channel_info">
+                        <div>
+                            <span class="va-bottom">43</span>
+                        </div>
+                        <div>
+                            <span class="va-top">SUB</span>
+                        </div>
+                    </div>
+                    <div class="channel_logo">
+                        <img src="./res/1x/chan_subscriber.png"/>
+                    </div>
+
+                    <div class="channel_info">
+                        <div>
+                            <span class="va-bottom">44</span>
+                        </div>
+                        <div>
+                            <span class="va-top">DONO</span>
+                        </div>
+                    </div>
+                    <div class="channel_logo">
+                        <img src="./res/1x/chan_donation.png"/>
+                    </div>
+
+                    <div class="channel_info">
+                        <div>
+                            <span class="va-bottom">45</span>
+                        </div>
+                        <div>
+                            <span class="va-top">FOL</span>
+                        </div>
+                    </div>
+                    <div class="channel_logo">
+                        <img alt="logo" src="res/1x/chan_follower.png">
+                    </div>
+
+                    <div class="channel_info">
+                        <div>
+                            <span class="va-bottom">46</span>
+                        </div>
+                        <div>
+                            <span class="va-top">MUS</span>
+                        </div>
+                    </div>
+                    <div class="channel_logo">
+                        <img src="./res/1x/chan_music.png"/>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="grid-item-episodes1 episodes">
+                <div class="flex-container-episodes" id="subscribers">
+                    <div class="default ep-width-2">Are You Dumber Than An Idiot</div>
+                    <div class="default ep-width-1">Uninterested George</div>
+                    <div class="default ep-width-1">Prawn Stars</div>
+                    <div class="default ep-width-1">Methbusters</div>
+                    <div class="default ep-width-2">Inside Amish: Big Doinks</div>
+                </div>
+            </div>
+            <div class="grid-item-episodes2 episodes">
+                <div class="flex-container-episodes" id="donations">
+                    <div class="default ep-width-1">Multiple Slap Woman</div>
+                    <div class="default ep-width-1">Defense on Midget</div>
+                    <div class="default ep-width-1">Nacho: Dippuden</div>
+                    <div class="default ep-width-1">Cowgirl Jazz</div>
+                    <div class="default ep-width-3">Half-Nonmetal Chemist: Sisterhood</div>
+                </div>
+            </div>
+            <div class="grid-item-episodes3 episodes">
+                <div class="flex-container-episodes" id="followers">
+                    <div class="default ep-width-2">Canada's Least Wanted</div>
+                    <div class="default ep-width-1">Dependance Day</div>
+                    <div class="default ep-width-1">Foreigner Items</div>
+                    <div class="default ep-width-1">Better Call Paul</div>
+                    <div class="default ep-width-1">The Running Alive</div>
+                </div>
+            </div>
+            <div class="grid-item-episodes4 episodes">
+                <div class="flex-container-episodes" id="music">
+                    <div class="default ep-width-1">Pimp My Guide</div>
+                    <div class="default ep-width-1">Quebec Shore</div>
+                    <div class="default ep-width-1">16 and Disciplined</div>
+                    <div class="default ep-width-1">ShiTTV Bibs</div>
+                    <div class="default ep-width-1">Crevice and Ass-Head</div>
+                </div>
+            </div>
+
+            <div class="grid-item-episodes1 episodes-gradient"></div>
+            <div class="grid-item-episodes2 episodes-gradient"></div>
+            <div class="grid-item-episodes3 episodes-gradient"></div>
+            <div class="grid-item-episodes4 episodes-gradient"></div>
+
+            <div class="grid-item-episodes1 episodes-bg"></div>
+            <div class="grid-item-episodes2 episodes-bg"></div>
+            <div class="grid-item-episodes3 episodes-bg"></div>
+            <div class="grid-item-episodes4 episodes-bg"></div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script type="text/javascript" src="./js/includes/jquery-3.5.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>
