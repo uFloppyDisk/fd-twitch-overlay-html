@@ -1,5 +1,7 @@
 let storage = new StorageManager();
 
+let finishedInit = false;
+
 let EPISODE_LIMIT = 7;
 let WIDTH_LIMIT = 16;
 
@@ -11,8 +13,6 @@ let file_map = [
 ];
 
 let entries = [[],[],[],[]];
-let old_entries = [null,null,null,null];
-let new_entries = [null,null,null,null];
 
 function destroyGarbage() {
     let channels = $(".episodes > div");
@@ -27,16 +27,26 @@ function destroyGarbage() {
 }
 
 function update() {
+    if (!finishedInit) {
+        return;
+    }
+
     let timeslot = getRoundedTime();
     let current_timeslot = $(".flex-container-header > div:nth-child(2) > span").text();
 
     if (!(current_timeslot === timeslot)) {
-        let offset = 3600 * 3;
-        let future_timeslot = getRoundedTime(offset);
+        timeslots = $(".flex-container-header > div > span.timeslot");
 
-        addHeader(future_timeslot, true);
+        timeslots.each(function(index, element) {
+            let offset = 1800 * index;
+            roundedTime = getRoundedTime(offset);
+
+            console.log(`Replacing timeslot ${index+1} with ${roundedTime}`);
+            $(element).text(roundedTime);
+        });
     }
 
+    isUpdated = false;
     file_map.forEach(function(value, index) {
         let ret = null;
 
@@ -49,35 +59,30 @@ function update() {
                 ret = data;
             },
             'error': function() {
+                console.log(`Error reading file ${value}`);
                 ret = null;
-            }
-        })
+            },
+            'cache': false
 
-        new_entries[index] = ret;
-    });
+        });
 
-    storage.updateEntry("new_entries", new_entries);
 
-    new_entries.forEach(function(value, index) {
-        if ((!(value === null)) && value.length > 0) {
-            if (!(old_entries[index] === value)) {
-                addEpisode(value, index, true);
+        if (entries[index][0] != ret) {
+            console.log(`File ${value} has changed to ${ret}`);
+            entries[index].unshift(ret);
+            isUpdated = true;
 
-                old_entries[index] = value;
+            addEpisode(ret, index, true);
 
-                entries = storage.getEntry("entries", true);
-                modify_array = entries[index];
-
-                modify_array.push(value);
-                if (modify_array.length > EPISODE_LIMIT) {
-                    modify_array = last(modify_array, EPISODE_LIMIT)
-                }
-
-                entries[index] = modify_array;
-                storage.updateEntry("entries", entries);
+            if (entries[index].length > EPISODE_LIMIT) {
+                entries[index] = trim(entries[index], EPISODE_LIMIT);
             }
         }
     });
+
+    if (isUpdated) {
+        storage.updateEntry("entries", entries);
+    }
 
     destroyGarbage();
 }
@@ -90,17 +95,21 @@ function animate() {
     });
 }
 
+function handleError(evt) {
+    if (evt.message) { // Chrome sometimes provides this
+        alert("error: "+evt.message +" at linenumber: "+evt.lineno+" of file: "+evt.filename);
+    } else {
+        alert("error: "+evt.type+" from element: "+(evt.srcElement || evt.target));
+    }
+}
+
 function init() {
+    // window.addEventListener("error", handleError, true);
+
     try {
         entries = storage.getEntry("entries", true);
     } catch (exc) {
         storage.createEntry("entries", entries);
-    }
-
-    try {
-        new_entries = storage.getEntry("new_entries", true);
-    } catch (exc) {
-        storage.createEntry("new_entries", new_entries);
     }
 
     for (let i = 0; i < 6; i++) {
@@ -114,13 +123,14 @@ function init() {
 
     entries.forEach(function(values, index) {
         if (values instanceof Array && values.length > 0) {
-            new_entries[index] = last(values);
-            old_entries[index] = new_entries[index];
-            values.forEach(function(value, x) {
+            temp = values.slice().reverse();
+            temp.forEach(function(value, x) {
                 addEpisode(value, index);
             });
         } else {
             entries[index] = [];
         }
     });
+
+    finishedInit = true;
 }

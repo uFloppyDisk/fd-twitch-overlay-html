@@ -11,13 +11,13 @@ let enum_width = [
     "ep-width-3"
 ]
 
-function last(array, n) {
+function trim(array, n) {
     if (array == null) 
         return void 0;
     if (n == null) 
         return array[array.length - 1];
 
-    return array.slice(Math.max(array.length - n, 0));  
+    return array.slice(0, Math.max(n, 0));  
 };
 
 function getRoundedTime(offset=0, ts=null) {
@@ -37,9 +37,11 @@ function getRoundedTime(offset=0, ts=null) {
     let hour = date.getHours();
     if (hour > 12) {
         hour = hour - 12;
-        half = "pm"
+        half = "pm";
     } else if (hour === 0) {
         hour = 12;
+    } else if (hour === 12) {
+        half = "pm";
     }
 
     let minute = date.getMinutes();
@@ -55,7 +57,7 @@ function getRoundedTime(offset=0, ts=null) {
 function addHeader(value, delete_old=false) {
     let elem = 
         $("<div>").append(
-            $("<span>", {"class": "va-header", "text": value})
+            $("<span>", {"class": "va-header timeslot", "text": value})
     );
 
     let jq_string = `.flex-container-header > div`;

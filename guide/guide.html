@@ -15,6 +15,7 @@
 
         <script type="text/javascript" src="./js//classes/storage.class.js"></script>
         <script type="text/javascript" src="./js/utility.js"></script>
+        <script type="text/javascript" src="./js/exceptions.js"></script>
         <script type="text/javascript" src="./js/base.js"></script>
 
         <script>
@@ -27,14 +28,13 @@
 
             if (ARGS.get("clear") === "true") {
                 localStorage.removeItem("entries");
-                localStorage.removeItem("new_entries");
             }
 
             if (ARGS.get("action") == "reload") {
                 setInterval('reload()', 1000);
             } else if (ARGS.get("action") == "update") {
                 setInterval('update()', 2000);
-                setInterval('animate()', 1010);
+                setInterval('animate()', 2010);
             }
         </script>
 
@@ -138,7 +138,7 @@
                     <div class="default ep-width-1">Quebec Shore</div>
                     <div class="default ep-width-1">16 and Disciplined</div>
                     <div class="default ep-width-1">ShiTTV Bibs</div>
-                    <div class="default ep-width-1">Crevice and Ass-Head</div>
+                    <div class="default ep-width-2">Crevice and Ass-Head</div>
                 </div>
             </div>
 
