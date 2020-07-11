@@ -5,7 +5,12 @@ div#channel_name {
     padding-left: 82.66px;
 }
 
+div#channel_name div {
+    width: 1871px;
+}
+
 div#channel_name span.text {
+    display: inline;
     font-size: 93.33pt;
 }
 

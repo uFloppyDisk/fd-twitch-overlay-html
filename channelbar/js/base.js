@@ -1,5 +1,7 @@
+let initFinished = false;
+
 let channels = {};
-chosen_channel = null;
+let current_channel = null;
 
 function generateEpisodeTimes(channel, isFirstEpisode=false) {
     schedule = channel.schedule.schedule;
@@ -28,23 +30,135 @@ function generateEpisodeTimes(channel, isFirstEpisode=false) {
     return [time_start, time_end];
 }
 
+function getEpisode(channel, times) {
+    try {
+        let episode_name = null;
+
+        let title_switch = Math.floor(Math.random() * 2);
+        if (title_switch == 0) {
+            episode_name = channels["global"].episode.titles[Math.floor(Math.random() * channels["global"].episode.titles.length)];
+        } else {
+            episode_name = channel.titles[Math.floor(Math.random() * channel.titles.length)]; 
+        }
+    
+        let episode = new Episode(episode_name, times[0], times[1]);
+
+        return episode;
+    } catch (e) {
+        return false;
+    }
+}
+
+function handleSceneTransitionFinished(event) {
+    if (event.detail.name.includes("-c")) {
+        if (ARGS.get("animate") == "true") {
+            $("#hide").addClass("animate");
+        }  
+    }
+    console.log(`Finished transition to ${event.detail.name}`)
+}
+
+function handleSceneChange() {
+    poll = pollChannelNumber();
+
+    if (current_channel === null) {
+        if (ARGS.get("animate") == "true") {
+            $("#hide").removeClass("animate").hide();
+        }  
+    }
+
+    if (current_channel instanceof Channel) {
+        if (poll != null && current_channel.number != poll) {
+            console.log(`Channel has changed to ${poll}`);
+    
+            current_channel = channels[poll];
+            updateChannel(current_channel);
+    
+            if (ARGS.get("animate") == "true") {
+                $("#hide").show();
+            }  
+        } else if (poll === null) {
+            current_channel = null;
+        }
+    }
+}
+
+function update() {
+    if (!initFinished) {
+        return;
+    }
+    
+    let now = new Date();
+    updateClock(now);
+
+    isEpisodeUpdated = false;
+    for (let [number, channel] of Object.entries(channels)) {
+        if (!(channel instanceof Channel)) {
+            continue;
+        }
+
+        if (channel.schedule.getLength() < 3) {
+            for (let index = 0; index < (3 - channel.schedule.getLength()); index++) {
+                episode_times = [];
+                
+                schedule_length = channel.schedule.getLength();
+                episode_times = generateEpisodeTimes(channel, schedule_length === 0);
+
+                episode = getEpisode(channel, episode_times);
+
+                if (episode instanceof Episode) {
+                    channel.addToSched(episode);
+                }
+            }
+        }
+
+        if (channel.schedule.getEpisode(0).end < now.getTime()) {
+            channel.delFromSched(0);
+
+            episode_times = generateEpisodeTimes(channel, false);
+
+            episode = getEpisode(channel, episode_times);
+
+            if (episode instanceof Episode) {
+                channel.addToSched(episode);
+            }
+
+            if (current_channel != null && number === current_channel.number) {
+                isEpisodeUpdated = true;
+            }
+        }
+    }
+
+    if (current_channel != null) {
+        updateEpisodes(current_channel);
+        updateProgressBar(current_channel, now);
+    }
+}
+
 function init() {
-    if (ARGS.get("animate") != null) {
-        let attrs = document.getElementById("hide").getAttribute("class");
-        document.getElementById("hide").setAttribute("class", attrs + " animate")
-    }
+    let global_json = doSimpleAjax("./data/json/global.json").responseJSON;
+    channels["global"] = global_json;
 
-    if (ARGS.get("scene") != null) {
-        chosen_channel = ARGS.get("scene");
-    } else {
-        chosen_channel = "scene_monitor";
-    }
+    for (let value of global_json.index) {
+        let json = {};
+        $.ajax({
+            'async': false,
+            'type': "GET",
+            'global': false,
+            'url': "./data/json/channels/" + value + ".json",
+            'success': function(data) {
+                json = data;
+            },
+            'error': function() {
+                console.log("Could not fetch channel json.");
+            },
+            'cache': false
+        })
 
-    for (json of JSON_GLOBAL.channels) {
         channel = new Channel(json.name, json.number);
 
         if (json.logo == null) {
-            channel.logo = JSON_GLOBAL.logo;
+            channel.logo = global_json.logo;
         } else {
             channel.logo = json.logo;
         }
@@ -53,66 +167,22 @@ function init() {
         channel.durations = json.episode.durations;
         channel.schedule = new Schedule();
 
-        channels[json.scene] = channel;
-    }
-
-    update();
-}
-
-function update() {
-    try {
-        let now = new Date();
-        updateClock(now);
-
-        for (let [name, channel] of Object.entries(channels)) {
-            if (channel.schedule.getLength() < 3) {
-                for (let index = 0; index < (3 - channel.schedule.getLength()); index++) {
-                    episode_times = [];
-                    
-                    if (channel.schedule.getLength() == 0) {
-                        episode_times = generateEpisodeTimes(channel, true);
-                    } else {
-                        episode_times = generateEpisodeTimes(channel, false); 
-                    }
-
-                    let episode_name = null;
-
-                    let title_switch = Math.floor(Math.random() * 2);
-                    if (title_switch == 0) {
-                        episode_name = JSON_GLOBAL.episode.titles[Math.floor(Math.random() * JSON_GLOBAL.episode.titles.length)];
-                    } else {
-                        episode_name = channel.titles[Math.floor(Math.random() * channel.titles.length)]; 
-                    }
-
-                    let episode = new Episode(episode_name, episode_times[0], episode_times[1])
-                    channel.addToSched(episode);
-                }
-            }
-
-            if (channel.schedule.getEpisode(0).end < now.getTime()) {
-                channel.delFromSched(0);
-
-                episode_times = generateEpisodeTimes(channel, false);
-
-                let episode_name = null;
-
-                let title_switch = Math.floor(Math.random() * 2);
-                if (title_switch == 0) {
-                    episode_name = JSON_GLOBAL.episode.titles[Math.floor(Math.random() * JSON_GLOBAL.episode.titles.length)];
-                } else {
-                    episode_name = channel.titles[Math.floor(Math.random() * channel.titles.length)]; 
-                }
-
-                let episode = new Episode(episode_name, episode_times[0], episode_times[1]);
-                channel.addToSched(episode);
-            }
+        if (!(channel.number in channels)) {
+            channels[channel.number] = channel;
+        } else {
+            console.log(`Channel number ${channel.number} already exists.`);
         }
+    };
 
-        updateChannel(channels[chosen_channel]);
-        updateEpisodes(channels[chosen_channel]);
-        updateProgressBar(channels[chosen_channel], now);
-
-    } catch(exc) {
-        alert(exc.stack);
+    if (ARGS.get("animate") === "true") {
+        $("#hide").addClass("animate");
     }
+
+    poll = pollChannelNumber();
+    if (poll != null) {
+        current_channel = channels[poll];
+    }
+
+    initFinished = true;
+    update();
 }

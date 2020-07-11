@@ -2,16 +2,16 @@ function updateClock(now) {
     let options_time = {hour: "numeric", minute: "2-digit"};
     let options_date = {day: "2-digit", month: "2-digit", year: "numeric"};
 
-    document.getElementById("currentTime").innerText = now.toLocaleTimeString({hc: "h12"}, options_time);
-    document.getElementById("currentDate").innerText = now.toLocaleDateString('en-US', options_date);
+    $("#currentTime").text(now.toLocaleTimeString({hc: "h12"}, options_time));
+    $("#currentDate").text(now.toLocaleDateString('en-US', options_date));
 }
 
 function updateChannel(channel) {
-    document.getElementById("channelName").innerText = channel.name;
-    document.getElementById("channelNumber").innerText = channel.number;
+    $("#channelName").text(channel.name);
+    $("#channelNumber").text(channel.number);
 
     if (channel.logo != null) {    
-        document.getElementById("channelLogo").setAttribute("src", channel.logo)
+        $("#channelLogo").attr("src", channel.logo);
     }
 }
 
@@ -19,12 +19,12 @@ function updateEpisodes(channel) {
     schedule = channel.schedule;
     let options = {hour: "numeric", minute: "2-digit"};
 
-    document.getElementById("currentEpisode").innerText = schedule.getEpisode(0).getName;
-    document.getElementById("currentEpisodeTimes").innerText = schedule.getEpisode(0).toString();
-    document.getElementById("currentEpisodeProgressTime").innerText = schedule.getEpisode(0).endTime.toLocaleTimeString({hc: "h12"}, options);
+    $("#currentEpisode").text(schedule.getEpisode(0).getName);
+    $("#currentEpisodeTimes").text(schedule.getEpisode(0).toString());
+    $("#currentEpisodeProgressTime").text(schedule.getEpisode(0).endTime.toLocaleTimeString({hc: "h12"}, options));
 
-    document.getElementById("nextEpisode").innerText = schedule.getEpisode(1).getName;
-    document.getElementById("nextEpisodeTimes").innerText = schedule.getEpisode(1).toString();
+    $("#nextEpisode").text(schedule.getEpisode(1).getName);
+    $("#nextEpisodeTimes").text(schedule.getEpisode(1).toString());
 }
 
 function updateProgressBar(channel, now) {
@@ -39,6 +39,6 @@ function updateProgressBar(channel, now) {
     max = time_end_seconds - time_start_seconds;
     value = time_current_seconds - time_start_seconds;
 
-    document.getElementById("currentEpisodeProgress").setAttribute("max", max);
-    document.getElementById("currentEpisodeProgress").setAttribute("value", value);
+    $("#currentEpisodeProgress").attr("max", max);
+    $("#currentEpisodeProgress").attr("value", value);
 }
