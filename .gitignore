@@ -9,4 +9,6 @@
 !*/res/1x/scene_gaming.png
 !*/res/1x/scene_vr.png
 
+*.mp4
+
 guide/data/*

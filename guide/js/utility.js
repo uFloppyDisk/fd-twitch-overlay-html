@@ -71,7 +71,7 @@ function addHeader(value, delete_old=false) {
 function addEpisode(value, channel, animate=false, width_override=0) {
     value = value.trim();
     
-    if (value.length <= 3) {
+    if (value === null || value.length <= 3) {
         return false;
     }
 
