@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=1871, height=280, initial-scale=1, shrink-to-fit=no"/>
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" type="text/css" href="./css/base.css"/>
+        <link rel="stylesheet" type="text/css" href="./css/pos.css"/>
+        <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+
+        <script src="./js/classes/episode.class.js"></script>
+        <script src="./js/classes/schedule.class.js"></script>
+        <script src="./js/classes/channel.class.js"></script>
+
+        <script src="./js/utility.js"></script>
+        <script src="./js/update.js"></script>
+        <script src="./js/base.js"></script>
+
+        <script>
+            function reload() {
+                location.href = location
+            }
+
+            const QUERY_STRING = location.search;
+            const ARGS = new URLSearchParams(QUERY_STRING);
+
+            if (ARGS.get("action") == "reload") {
+                setInterval('reload()', 1000);
+            } else if (ARGS.get("action") == "update") {
+                setInterval('handleSceneChange()', 50);
+                setInterval('update()', 1000);
+            }
+
+            window.addEventListener('obsSceneChanged', function(event) {
+                handleSceneTransitionFinished(event);
+            });
+        </script>
+
+        <title>Channel Seek Bar</title>
+    </head>
+    <body onload="init()">
+        <div class="container" id="hide">
+            <div class="container anchor" id="channel_name">
+                <div>
+                    <span class="text" id="channelName"></span>
+                </div>
+            </div>
+            <div class="container anchor" id="seekbar">
+                <img class="raw" alt="ERROR" src="res/1x/plate.png"/>
+                <div class="container fill" id="seekbar_inner">
+                    <div class="container" id="channel_info">
+                        <div class="float-left flex" id="channel_logo">
+                            <img id="channelLogo" alt="LOGO" src="res/1x/blank.png">
+                        </div>
+                        <div class="float-left" id="channel_number">
+                            <span class="valign-helper"></span>
+                            <p class="text" id="channelNumber"></p>
+                        </div>
+                        <span class="clear"></span>
+                    </div>
+                    <div class="container" id="episode_info">
+                        <div id="episode_current">
+                            <span class="text" id="currentEpisode"></span>
+                            <p class="text timetable float-right clear-right" id="currentEpisodeTimes"></p>
+                        </div>
+                        <div id="episode_current_progress">
+                            <progress class="clear-right" id="currentEpisodeProgress" value="0" max="1"></progress>
+                            <p class="text timetable float-right clear-right" id="currentEpisodeProgressTime"></p>
+                        </div>
+                        <div id="episode_next">
+                            <span class="text float-left clear-right" id="nextEpisode"></span>
+                            <p class="text timetable float-right clear-right" id="nextEpisodeTimes"></p>
+                        </div>
+                    </div>
+                    <div class="container" id="datetime">
+                        <div id="time_current">
+                            <p class="text time float-right" id="currentTime"></p>
+                            <p class="text time float-right" id="currentDate"></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="./js/includes/jquery-3.5.1.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    </body>
+</html>

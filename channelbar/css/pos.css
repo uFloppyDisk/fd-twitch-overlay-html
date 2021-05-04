@@ -1,56 +1,63 @@
 div#channel_name {
-    line-height: 1;
-    height: 99px;
-    padding-top: 5px;
-    padding-left: 62px;
+    line-height: 1.33;
+    height: 132px;
+    padding-top: 6.66px;
+    padding-left: 82.66px;
+}
+
+div#channel_name div {
+    width: 1871px;
 }
 
 div#channel_name span.text {
-    font-size: 70pt;
+    display: inline;
+    font-size: 93.33pt;
 }
 
 div#seekbar {
-    top: 99px;
-    width: 1871px;
-    height: 181px;
+    top: 132px;
+    width: 2,494.66px;
+    height: 241.33px;
 }
 
 div#seekbar_inner {
     top: 0px;
-    left: 69px;
+    left: 92px;
 }
 
 div#channel_info {
     left: 0px;
-    width: 433px;
+    width: 577.33px;
     height: 100%;
 }
 
 div#channel_logo {
     top: 0px;
     left: 0px;
-    width: 135px;
+    width: 180px;
     height: 100%;
 }
 
 div#channel_number {
     top: 0px;
-    left: 135px;
-    width: 135px;
+    left: 180px;
+    width: 180px;
     height: 100%;
 }
 
 div#channel_number p.text {
-    font-size: 65pt;
-    padding-left: 20px;
+    font-size: 86.66pt;
+    padding-left: 26.66px;
     text-align: left;
 }
 
 div#episode_info {
-    left: 433px;
-    width: 1075px;
+    max-width: 2000px;
+
+    left: 577.33px;
+    width: 1433.33px;
     height: 100%;
-    padding-top: 3px;
+    padding-top: 4px;
 }
 
 div#episode_current {
@@ -59,11 +66,11 @@ div#episode_current {
 }
 
 div#episode_current span.text:first-of-type {
-    font-size: 29pt;
+    font-size: 38.66pt;
 }
 
 div#episode_current p.text {
-    line-height: 54px;
+    line-height: 72px;
 }
 
 div#episode_current_progress {
@@ -72,7 +79,7 @@ div#episode_current_progress {
 }
 
 div#episode_current_progress p.text {
-    line-height: 27px;
+    line-height: 36px;
 }
 
 div#episode_next {
@@ -81,46 +88,46 @@ div#episode_next {
 }
 
 div#episode_next span.text:first-of-type {
-    font-size: 20pt;
+    font-size: 26.66pt;
 }
 
 div#episode_next p.text {
-    line-height: 45px;
+    line-height: 60px;
 }
 
 div#episode_info p.text {
-    padding-left: 20px;
+    padding-left: 26.66px;
     text-align: right;
 }
 
 div#episode_info p.timetable {
-    font-size: 20pt;
+    font-size: 26.66pt;
     top: 50%;
     margin: 0px;
     padding: 0px;
 }
 
 div#datetime {
-    left: 1508px;
-    width: 225px;
+    left: 2010.61px;
+    width: 300px;
     height: 100%;
 }
 
 div#datetime p.time {
     line-height: 1;
-    font-size: 20pt;
+    font-size: 26.66pt;
     top: 50%;
     margin: 0px;
     padding: 0px;
 }
 
 div#datetime p.time:first-of-type {
-    font-size: 32pt;
-    padding-top: 21px; 
+    font-size: 53.33pt;
+    padding-top: 28px; 
 }
 
 div#datetime p.time:last-of-type {
-    font-size: 20pt;
+    font-size: 26.66pt;
 }
 
 progress::-webkit-progress-bar {

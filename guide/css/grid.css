@@ -1,0 +1,69 @@
+.grid-item-header {
+    grid-area: header;
+
+    max-width: 2560px;
+    height: 54.6666px;
+
+    border-bottom-style: solid;
+    border-bottom-width: 2.666px;
+    border-bottom-color: white;
+}
+
+.grid-item-channels {
+    grid-area: channels;
+    grid-auto-columns: 400px;
+
+    width: 400px;
+    height: 533.33px;
+}
+
+.grid-item-episodes1 {
+    grid-area: episodes1;
+    grid-auto-columns: 400px;
+}
+
+.grid-item-episodes2 {
+    grid-area: episodes2;
+    grid-auto-columns: 400px;
+}
+
+.grid-item-episodes3 {
+    grid-area: episodes3;
+    grid-auto-columns: 400px;
+}
+
+.grid-item-episodes4 {
+    grid-area: episodes4;
+    grid-auto-columns: 400px;
+}
+
+.grid-container-guide {
+    display: grid;
+    grid-template-areas:
+      'header   header    header    header    header    header    header'
+      'channels episodes1 episodes1 episodes1 episodes1 episodes1 episodes1'
+      'channels episodes2 episodes2 episodes2 episodes2 episodes2 episodes2'
+      'channels episodes3 episodes3 episodes3 episodes3 episodes3 episodes3'
+      'channels episodes4 episodes4 episodes4 episodes4 episodes4 episodes4';
+    grid-gap: 0px;
+    padding: 0px;
+
+    justify-items: stretch;
+
+    position: absolute;
+
+    height: 587.99px;
+    width: 2560px;
+  }
+  
+.grid-container-guide > div {
+    text-align: center;
+    padding: 0px 0;
+    
+    font-family: source-code-pro, monospace;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 44px;
+
+    color: rgb(255, 255, 255);
+}

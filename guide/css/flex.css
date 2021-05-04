@@ -1,0 +1,87 @@
+.flex-container-header {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: transparent;
+
+    justify-items: stretch;
+
+    width: 3000px;
+}
+
+.flex-container-header > div {
+    width: 400px;
+
+    font-size: 37px;
+
+    border-right-style: solid;
+    border-right-width: 2.66px;
+    border-right-color: white;
+}
+
+.flex-container-header > div:first-child {
+    width: 400px;
+}
+
+.flex-container-channels {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: transparent;
+}
+
+.flex-container-channels img {
+    max-width: 95%;
+    max-height: 80%;
+}
+
+.flex-container-channels div {
+    line-height: 65.333333px;
+
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
+}
+
+.flex-container-channels > div {
+    background-color: transparent;
+
+    margin: 0px;
+    width: 200px;
+
+    text-align: center;
+    line-height: 130.666px;
+
+    border-bottom-style: solid;
+    border-bottom-width: 2.66px;
+    border-bottom-color: white;
+}
+
+.flex-container-episodes {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    background-color: transparent;
+
+    width: 15000px;
+}
+
+.flex-container-episodes > div {
+    background-color: transparent;
+
+    overflow: hidden;
+
+    margin: 0px;
+    padding-left: 35px;
+
+    text-align: left;
+    line-height: 130.666px;
+
+    box-shadow: 2px 0px 2px rgba(0,0,0,0.75);
+
+    border-right-style: solid;
+    border-right-width: 2.666px;
+    border-right-color: white;
+}
+
+.flex-container-episodes > div.episode:first-child {
+    font-weight: 800;
+}

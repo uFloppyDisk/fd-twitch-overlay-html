@@ -2,6 +2,7 @@ class Channel {
 
     name = "";
     number = -1;
+    logo = null;
 
     titles = [];
     durations = [];
@@ -23,6 +24,13 @@ class Channel {
         return this.number;
     }
 
+<<<<<<< HEAD:js/classes/channel.class.js
+=======
+    get logo() {
+        return this.logo;
+    }
+
+>>>>>>> 49158df20d04e839dfa741e7263888351c50a3e9:channelbar/js/classes/channel.class.js
     get titles() {
         return this.titles;
     }
@@ -54,9 +62,22 @@ class Channel {
     }
 
     /**
+<<<<<<< HEAD:js/classes/channel.class.js
      * @param {Array} titles
      */
     set titles(titles) {
+=======
+     * @param {string} logo
+     */
+    set logo(logo) {
+        this.logo = logo;
+    }
+
+    /**
+     * @param {Array} titles
+     */
+    set titles(titles){
+>>>>>>> 49158df20d04e839dfa741e7263888351c50a3e9:channelbar/js/classes/channel.class.js
         this.titles = titles;
     }
 
