@@ -66,6 +66,11 @@ function update() {
 
         });
 
+        ret = ret.trim();
+
+        if (ret === null || ret.length < 4) {
+            return true;
+        }
 
         if (entries[index][0] != ret) {
             console.log(`File ${value} has changed to ${ret}`);
@@ -96,7 +101,7 @@ function animate() {
 }
 
 function handleError(evt) {
-    if (evt.message) { // Chrome sometimes provides this
+    if (evt.message) {
         alert("error: "+evt.message +" at linenumber: "+evt.lineno+" of file: "+evt.filename);
     } else {
         alert("error: "+evt.type+" from element: "+(evt.srcElement || evt.target));

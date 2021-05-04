@@ -69,12 +69,6 @@ function addHeader(value, delete_old=false) {
 }
 
 function addEpisode(value, channel, animate=false, width_override=0) {
-    value = value.trim();
-    
-    if (value === null || value.length <= 3) {
-        return false;
-    }
-
     if (typeof channel === "number") {
         if (0 <= channel <= 3) {
             channel = enum_channel[channel];
