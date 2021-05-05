@@ -43,7 +43,7 @@ class StorageManager {
         this._set(key, value);
     }
 
-    getEntry(key, json=false) {
+    getEntry(key, json=true) {
         if (localStorage.getItem(key) === null) {
             throw new StorageException(`Tried getting value: Key ${key} doesn't exist.`);
         }

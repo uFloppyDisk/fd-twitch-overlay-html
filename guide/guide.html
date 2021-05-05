@@ -15,7 +15,10 @@
 
         <script type="text/javascript" src="./js/includes/jquery-3.5.1.js"></script>
 
-        <script type="text/javascript" src="./js//classes/storage.class.js"></script>
+        <script type="text/javascript" src="./js/constants.js"></script>
+        <script type="text/javascript" src="./js/classes/objects/episode.class.js"></script>
+        <script type="text/javascript" src="./js/classes/storageManager.class.js"></script>
+        <script type="text/javascript" src="./js/classes/episodeManager.class.js"></script>
         <script type="text/javascript" src="./js/utility.js"></script>
         <script type="text/javascript" src="./js/exceptions.js"></script>
         <script type="text/javascript" src="./js/base.js"></script>
@@ -29,14 +32,13 @@
             const ARGS = new URLSearchParams(QUERY_STRING);
 
             if (ARGS.get("clear") === "true") {
-                localStorage.removeItem("entries");
+                localStorage.clear();
             }
 
-            if (ARGS.get("action") == "reload") {
+            if (ARGS.get("action") === "reload") {
                 setInterval('reload()', 1000);
-            } else if (ARGS.get("action") == "update") {
-                setInterval('update()', 2000);
-                setInterval('animate()', 2010);
+            } else if (ARGS.get("action") === "update") {
+                setInterval('update()', 500);
             }
         </script>
 

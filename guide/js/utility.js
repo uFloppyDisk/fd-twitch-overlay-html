@@ -68,18 +68,9 @@ function addHeader(value, delete_old=false) {
     }
 }
 
-function addEpisode(value, channel, animate=false, width_override=0) {
-    if (typeof channel === "number") {
-        if (0 <= channel <= 3) {
-            channel = enum_channel[channel];
-        } else {
-            channel = "null";
-        }
-    } else if (typeof channel === "string"){
-        if (!(channel in enum_channel)) {
-            channel = "null";
-        }
-    }
+function addEpisodeToHTML(episode, channel, animate=false, width_override=0) {
+    value = episode.getTitle();
+    channel = enum_channel[channel];
 
     let calc_width = -1;
     if (width_override != null) {
@@ -99,7 +90,7 @@ function addEpisode(value, channel, animate=false, width_override=0) {
         html_classes += " anim-start";
     }
 
-    let objDiv = $("<div>", {"class": html_classes});
+    let objDiv = $("<div>", {"class": html_classes, "data-ts": episode.getTimestamp()});
     objDiv.html(value);
 
     console.log(`Adding ${value} to ${channel} with episode width of ${calc_width+1}`);

@@ -1,0 +1,13 @@
+#!/bin/bash
+
+echo "Change To:"
+
+read value
+
+for file in ./data/*
+do
+	echo "--- " $file " ---"
+	echo $value > $file
+done
+
+echo "DONE"

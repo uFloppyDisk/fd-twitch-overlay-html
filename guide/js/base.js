@@ -1,8 +1,7 @@
-let storage = new StorageManager();
+let episodeManager = new EpisodeManager();
 
 let finishedInit = false;
 
-let EPISODE_LIMIT = 7;
 let WIDTH_LIMIT = 16;
 
 let file_map = [
@@ -48,41 +47,36 @@ function update() {
 
     isUpdated = false;
     file_map.forEach(function(value, index) {
-        let ret = null;
-
         $.ajax({
-            'async': false,
+            'async': true,
             'type': "GET",
             'global': false,
             'url': "./data/" + value,
             'success': function(data) {
-                ret = data;
+                ret = data.trim();
+
+                if (ret === null || ret.length < 4) {
+                    return true;
+                }
+        
+                let episode = episodeManager.addEpisode(ret, index);
+        
+                if (episode === false) {
+                    return true;
+                }
+        
+                if (episode instanceof Episode) {
+                    addEpisodeToHTML(episode, index, true);
+                }
+
+                setTimeout(animate, 100, ENUM_CHANNELS[index]);
             },
             'error': function() {
                 console.log(`Error reading file ${value}`);
-                ret = null;
             },
             'cache': false
 
         });
-
-        ret = ret.trim();
-
-        if (ret === null || ret.length < 4) {
-            return true;
-        }
-
-        if (entries[index][0] != ret) {
-            console.log(`File ${value} has changed to ${ret}`);
-            entries[index].unshift(ret);
-            isUpdated = true;
-
-            addEpisode(ret, index, true);
-
-            if (entries[index].length > EPISODE_LIMIT) {
-                entries[index] = trim(entries[index], EPISODE_LIMIT);
-            }
-        }
     });
 
     if (isUpdated) {
@@ -92,11 +86,11 @@ function update() {
     destroyGarbage();
 }
 
-function animate() {
+function animate(channel) {
     requestAnimationFrame(() => {
-        $(".anim-start.width-1").removeClass("anim-start").removeClass("width-1").addClass("anim").addClass("ep-width-1");
-        $(".anim-start.width-2").removeClass("anim-start").removeClass("width-2").addClass("anim").addClass("ep-width-2");
-        $(".anim-start.width-3").removeClass("anim-start").removeClass("width-3").addClass("anim").addClass("ep-width-3");
+        $(`#${channel} .anim-start.width-1`).removeClass("anim-start").removeClass("width-1").addClass("anim").addClass("ep-width-1");
+        $(`#${channel} .anim-start.width-2`).removeClass("anim-start").removeClass("width-2").addClass("anim").addClass("ep-width-2");
+        $(`#${channel} .anim-start.width-3`).removeClass("anim-start").removeClass("width-3").addClass("anim").addClass("ep-width-3");
     });
 }
 
@@ -111,12 +105,6 @@ function handleError(evt) {
 function init() {
     // window.addEventListener("error", handleError, true);
 
-    try {
-        entries = storage.getEntry("entries", true);
-    } catch (exc) {
-        storage.createEntry("entries", entries);
-    }
-
     for (let i = 0; i < 6; i++) {
         let offset = i * 1800;
         let value = getRoundedTime(offset);
@@ -126,16 +114,19 @@ function init() {
         addHeader(value);
     }
 
-    entries.forEach(function(values, index) {
-        if (values instanceof Array && values.length > 0) {
-            temp = values.slice().reverse();
-            temp.forEach(function(value, x) {
-                addEpisode(value, index);
-            });
-        } else {
-            entries[index] = [];
+    episodeManager.init();
+
+    episodeManager.getChannels().forEach(function(episodes, index) {
+        if (episodes.length < 1) {
+            return true;
         }
-    });
+
+        let temp = episodes.slice().reverse();
+        temp.forEach(function(episode, x) {
+            addEpisodeToHTML(episode, index);
+            setTimeout(animate, 100, ENUM_CHANNELS[index]);
+        });
+    })
 
     finishedInit = true;
 }
